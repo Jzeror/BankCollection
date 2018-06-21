@@ -1,6 +1,6 @@
 package service;
 
-import java.util.List;
+import java.util.Map;
 
 import domain.*;
 
@@ -9,14 +9,14 @@ public interface MemberService {
 
 	public void createStaff(StaffBean staff);
 
-	public List<MemberBean> list();
+	public Map<String,MemberBean> list();
 	
-	public List<MemberBean> search(String param);
+	public Map<String,MemberBean> findByName(String name);
 	
-	public MemberBean search(MemberBean member);
+	public MemberBean findById(MemberBean member);
 	
-	public void update(MemberBean member);
+	public void updatePass(MemberBean member);
 	
-	public void delete(MemberBean member);
+	public void deleteMember(MemberBean member);
 
 }

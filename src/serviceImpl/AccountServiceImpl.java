@@ -2,7 +2,8 @@ package serviceImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
@@ -13,12 +14,14 @@ import domain.MinusAccountBean;
 import service.AccountService;
 
 public class AccountServiceImpl implements AccountService {
-	List<AccountBean> list;
-int start; int end;
+	Map<String, AccountBean> map;
+	int start;
+	int end;
+
 	public AccountServiceImpl() {
-		list = new ArrayList<>();
-		start=1;
-		end=999;
+		map = new HashMap<>();
+		start = 1;
+		end = 999;
 	}
 
 	@Override
@@ -26,68 +29,64 @@ int start; int end;
 		account.setAccountType(AccountBean.ACCOUNT_TYPE);
 		account.setCreateDate(createDate());
 		account.setAccountNum(createAccountNum());
-		list.add(account);
+		map.put(account.getUid(), account);
 	}
 
 	@Override
-	public void createMinusAccount(AccountBean minusAccount) {
+	public void createMinusAccount(MinusAccountBean minusAccount) {
 		minusAccount.setAccountType(MinusAccountBean.ACCOUNT_TYPE);
 		minusAccount.setCreateDate(createDate());
 		minusAccount.setAccountNum(createAccountNum());
-		list.add(minusAccount);
+		map.put(minusAccount.getUid(), minusAccount);
 	}
 
 	@Override
-	public List<AccountBean> list() {
-		return list;
+	public Map<String, AccountBean> list() {
+		return map;
 	}
 
 	@Override
-	public List<AccountBean> list(String param) {
+	public Map<String, AccountBean> findByName(String param) {
 
-		List<AccountBean> temp = new ArrayList<>();
-		if (param.equals("")) {
-		} else {
-			for (int i = 0; i < list.size(); i++) {
-				if (param.equals(list.get(i).getName())) {
-					temp.add(list.get(i));
-				}
-			}
-		}
+		Map<String, AccountBean> temp = new HashMap<>();
+//		if (param.equals("")) {
+//		} else {
+//			for (int i = 0; i < list.size(); i++) {
+//				if (param.equals(list.get(i).getName())) {
+//					temp.add(list.get(i));
+//				}
+//			}
+//		}
 		return temp;
 	}
 
 	@Override
-	public AccountBean search(AccountBean account) {
-		for (int i = 0; i < list.size(); i++) { // 잘못 입력된 값 거르기
-			if (account.getUid().equals(list.get(i).getUid()) && account.getPass().equals(list.get(i).getPass())) {
-				account = list.get(i);
-				break;
-			} else {
-				JOptionPane.showMessageDialog(null, "잘못입력");
-				break;
-			}
-		}
-		return account;
+	public AccountBean findById(AccountBean account) {
+		System.out.println(map.get(account.getUid()).getName());
+		return map.get(account.getUid());
 	}
 
 	@Override
-	public void update(AccountBean account) {
+	public void updatePass(AccountBean account) {
 		String pass = account.getPass().split("/")[0];
 		String newPass = account.getPass().split("/")[1];
-		account.setPass(pass);
-		list.get(list.indexOf(search(account))).setPass(newPass);
+		AccountBean temp = map.get(account.getUid());
+		if (temp == null) {
+			System.out.println("수정하려는 ID 가 없음!!");
+		} else {
+			if (temp.getPass().equals(pass)) {
+					map.get(account.getUid()).setPass(newPass); //이건 put보다 안좋나? get을 써서 찾긴 찾아야 하니까?
+			}
+		}
 	}
 
 	@Override
-	public void delete(AccountBean account) {
-		String pass = account.getPass().split("/")[0];
-		String confirmPass = account.getPass().split("/")[1];
-		account.setPass(pass);
-		if(pass==confirmPass) {
-			list.remove(list.get(list.indexOf(search(account)))); 
-		}
-	
+	public void deleteAccount(AccountBean account) {//로그인 상태라고 가정.
+		if (account.getPass().split("/")[0].equals(account.getPass().split("/")[1])) {
+		//	map.remove(map.get(account.getUid()).getUid());      ★key이기 때문에 map.get(account.getUid()).getUid() 와 account.getUid()는 차이가 없음.
+			map.remove(account.getUid());         
+		}else {System.out.println("입력오류");}
+		
 
 	}
 
@@ -98,7 +97,7 @@ int start; int end;
 			if (i != 2) {
 				num += String.format("%03d", createRandom(start, end)) + "-";
 			} else {
-				num += String.format("%03d",createRandom(start, end)) + "";
+				num += String.format("%03d", createRandom(start, end)) + "";
 			}
 		}
 		return num;
@@ -106,10 +105,10 @@ int start; int end;
 
 	@Override
 	public int createRandom(int start, int end) {
-		
-			int a = (int) (Math.random() * end) + start;
-			
-			return a;
+
+		int a = (int) (Math.random() * end) + start;
+
+		return a;
 	}
 
 	@Override
