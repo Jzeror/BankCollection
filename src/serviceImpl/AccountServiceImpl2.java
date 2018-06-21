@@ -48,9 +48,9 @@ int start; int end;
 		List<AccountBean> temp = new ArrayList<>();
 		if (param.equals("")) {
 		} else {
-			for (int i = 0; i < list.size(); i++) {
-				if (param.equals(list.get(i).getName())) {
-					temp.add(list.get(i));
+			for (AccountBean e: list ) {
+				if (param.equals(e.getName())) {
+					temp.add(e);
 				}
 			}
 		}
@@ -59,9 +59,9 @@ int start; int end;
 
 	@Override
 	public AccountBean search(AccountBean account) {
-		for (int i = 0; i < list.size(); i++) { // 잘못 입력된 값 거르기
-			if (account.getUid().equals(list.get(i).getUid()) && account.getPass().equals(list.get(i).getPass())) {
-				account = list.get(i);
+		for (AccountBean e : list) { // 잘못 입력된 값 거르기
+			if (account.getUid().equals(e.getUid()) && account.getPass().equals(e.getPass())) {
+				account = e;
 				break;
 			} else {
 				JOptionPane.showMessageDialog(null, "잘못입력");

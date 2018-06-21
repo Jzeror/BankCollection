@@ -1,7 +1,7 @@
 package service;
 
 import java.util.Map;
-
+import java.util.List;
 import domain.*;
 
 public interface MemberService {
@@ -11,7 +11,7 @@ public interface MemberService {
 
 	public Map<String,MemberBean> list();
 	
-	public Map<String,MemberBean> findByName(String name);
+	public List<MemberBean> findByName(String name);
 	
 	public MemberBean findById(MemberBean member);
 	

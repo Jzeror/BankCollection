@@ -1,7 +1,7 @@
 package serviceImpl;
 
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
+
 import domain.*;
 import service.*;
 
@@ -38,8 +38,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map<String, MemberBean> findByName(String param) {
-		Map<String, MemberBean> temp = new HashMap<>();
+	public List<MemberBean> findByName(String name) {
+		List<MemberBean> temp = new ArrayList<>();
+		Set<MemberBean> set = new HashSet<>();
+		for (Map.Entry<String, MemberBean> e : map.entrySet()) {
+			if (name.equals(e.getValue().getName())) {
+				set.add(e.getValue());
+			}
+		}
+		Iterator<MemberBean> it = set.iterator();
+		while (it.hasNext()) {
+			temp.add(it.next());
+		}
 		return temp;
 	}
 

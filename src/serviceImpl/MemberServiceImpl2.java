@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import domain.*;
 
-import service.MemberService;
+
+import service.MemberService2;
 
 public class MemberServiceImpl2 implements MemberService2 {
 	List<MemberBean> list;
@@ -39,9 +40,9 @@ public class MemberServiceImpl2 implements MemberService2 {
 	@Override
 	public List<MemberBean> search(String param) {
 		List<MemberBean> temp=new ArrayList<MemberBean>();
-		for(int i=0; i<list.size();i++) {
-			if(param.equals(list.get(i).getName())) {
-				temp.add(list.get(i));
+		for(MemberBean e : list) {
+			if(param.equals(e.getName())) {
+				temp.add(e);
 			}
 		}
 		return temp;
@@ -50,9 +51,9 @@ public class MemberServiceImpl2 implements MemberService2 {
 	@Override
 	public MemberBean search(MemberBean member) {
 		MemberBean dap = new MemberBean();
-		for(int i=0; i<list.size();i++) {
-			if(member.getUid().equals(list.get(i).getUid())) {
-				dap=list.get(i);
+		for(MemberBean e: list) {
+			if(member.getUid().equals(e.getUid())) {
+				dap=e;
 				break;
 			}
 		}
