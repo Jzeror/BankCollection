@@ -3,6 +3,7 @@ package serviceImpl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -10,9 +11,9 @@ import java.util.ArrayList;
 
 import domain.AccountBean;
 import domain.MinusAccountBean;
-import service.AccountService;
+import service.AccountService2;
 
-public class AccountServiceImpl2 implements AccountService {
+public class AccountServiceImpl2 implements AccountService2 {
 	List<AccountBean> list;
 int start; int end;
 	public AccountServiceImpl2() {

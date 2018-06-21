@@ -8,7 +8,6 @@ import service.*;
 import service.MemberService;
 
 public class MemberServiceImpl implements MemberService {
-
 	Map<String, MemberBean> map;
 
 	public MemberServiceImpl() {

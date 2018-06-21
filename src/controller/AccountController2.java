@@ -2,8 +2,8 @@ package controller;
 
 import javax.swing.JOptionPane;
 import domain.*;
-import service.AccountService;
-import serviceImpl.AccountServiceImpl;
+import service.AccountService2;
+import serviceImpl.AccountServiceImpl2;
 
 enum AccountButt1 {
 	EXIT, ACCOUNT, MINUS_ACCOUNT, LIST, FIND_BY_ID, FIND_BY_NAME, CHANGE_PASS, DELETE_ACCOUNT
@@ -16,7 +16,7 @@ public class AccountController2 {
 
 		};
 		// Account account = null;
-		AccountService service = new AccountServiceImpl();
+		AccountService2 service = new AccountServiceImpl2();
 		AccountBean account;
 		while (true) {
 			AccountButt1 select = (AccountButt1) JOptionPane.showInputDialog(null, // frame

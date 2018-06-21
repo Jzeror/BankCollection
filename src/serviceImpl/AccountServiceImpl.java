@@ -110,9 +110,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public int createRandom(int start, int end) {
-
 		int a = (int) (Math.random() * end) + start;
-
 		return a;
 	}
 
