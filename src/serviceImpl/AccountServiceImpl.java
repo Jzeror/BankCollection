@@ -20,7 +20,7 @@ public class AccountServiceImpl implements AccountService {
 	Map<String, AccountBean> map;
 	int start;
 	int end;
-
+	List<AccountBean> list;
 	public AccountServiceImpl() {
 		map = new HashMap<>();
 		start = 1;
@@ -31,38 +31,21 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void createAccount(AccountBean account) {
 		account.setAccountType(AccountBean.ACCOUNT_TYPE);
-		account.setCreateDate(createDate());
-		account.setAccountNum(createAccountNum());
+	//	account.setCreateDate(createDate());
+	//	account.setAccountNum(createAccountNum());
 		map.put(account.getUid(), account);
 	}
 
 	@Override
 	public void createMinusAccount(MinusAccountBean minusAccount) {
 		minusAccount.setAccountType(MinusAccountBean.ACCOUNT_TYPE);
-		minusAccount.setCreateDate(createDate());
-		minusAccount.setAccountNum(createAccountNum());
-		map.put(minusAccount.getUid(), minusAccount);
+		//minusAccount.setCreateDate(createDate());
+		//minusAccount.setAccountNum(createAccountNum());
+		list.add(minusAccount);
 	}
 
-	@Override
-	public Map<String, AccountBean> list() {
-		return map;
-	}
 
-	@Override
-	public Map<String, AccountBean> findByName(String param) {
-		List<AccountBean> list=new ArrayList<>();
-		Set<AccountBean> set=new HashSet<>();
-		for(Map.Entry<String, AccountBean> e: map.entrySet()) {
-			if(param.equals(e.getValue().getName())) {
-				set.add(e.getValue());
-			}
-		}
-		
-		Map<String, AccountBean> temp = new HashMap<>();
-		
-		return temp;
-	}
+
 
 	@Override
 	public AccountBean findById(AccountBean account) {
@@ -95,29 +78,5 @@ public class AccountServiceImpl implements AccountService {
 		}
 	}
 
-	@Override
-	public String createAccountNum() {
-		String num = "";
-		for (int i = 0; i < 3; i++) {
-			if (i != 2) {
-				num += String.format("%03d", createRandom(start, end)) + "-";
-			} else {
-				num += String.format("%03d", createRandom(start, end)) + "";
-			}
-		}
-		return num;
-	}
-
-	@Override
-	public int createRandom(int start, int end) {
-		int a = (int) (Math.random() * end) + start;
-		return a;
-	}
-
-	@Override
-	public String createDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

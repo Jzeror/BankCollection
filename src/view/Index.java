@@ -1,62 +1,105 @@
 package view;
 
-import javax.swing.JOptionPane;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
-import domain.*;
-import service.*;
-import serviceImpl.MemberServiceImpl;
+public class Index extends JFrame{
 
-enum IndexButt {
-	EXIT, JOIN, ADD, LIST, FIND_BY_ID, FIND_BY_NAME, COUNT, UPDATE, WITHDRAWAL
-}
-public class Index {
-
-	public static void main(String[] args) {
-		IndexButt[] buttons = { IndexButt.EXIT, IndexButt.JOIN, IndexButt.ADD, IndexButt.LIST,
-				IndexButt.FIND_BY_ID, IndexButt.FIND_BY_NAME, IndexButt.COUNT, IndexButt.UPDATE,
-				IndexButt.WITHDRAWAL };
-		// Account account = null;
-		MemberService service = new MemberServiceImpl();
-		MemberBean member = null;
-		while (true) {
-			IndexButt select = (IndexButt) JOptionPane.showInputDialog(null, // frame
-					"선택", // frame title
-					"기능을 선택하시오", // order
-					JOptionPane.QUESTION_MESSAGE, // type
-					null, // icon
-					buttons, // Array of choices
-					buttons[1]); // default
-			switch (select) {
-			case EXIT:
-				JOptionPane.showMessageDialog(null, "종료함다");
-				return;
-			case JOIN:
-				member=new UserBean();
-				break;
-			case ADD:
+	private static final long serialVersionUID = 1L;
+	Index(){
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("관리자화면");
+		this.setLayout(new GridLayout(3, 3,10,10));
+		JButton btn1 = new JButton("회원가입");
+		btn1.addActionListener(new ActionListener() {
 			
-				break;
-			case LIST:
-			
-				break;
-
-			case FIND_BY_ID:
-				
-				break;
-			case FIND_BY_NAME:
-			
-				break;
-			case COUNT:
-			
-				break;
-			case UPDATE:
-			
-				break;
-			case WITHDRAWAL:
-			
-				break;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Register();
 			}
-		}
+		});
+		this.add(btn1);
+		JButton btn2 = new JButton("통장생성");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn2);
+		JButton btn3 = new JButton("목록보기");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn3);
+		JButton btn4 = new JButton("ID 검색");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn4);
+		JButton btn5 = new JButton("이름 검색");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn5);
+		JButton btn6 = new JButton("비번 변경");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn6);
+		JButton btn7 = new JButton("입금");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn7);
+		JButton btn8 = new JButton("출금");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn8);
+		JButton btn9 = new JButton("회원 탈퇴");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		this.add(btn9);
+		setSize(600, 600);
+		setLocation(100, 100);
+		setVisible(true);
+	}
+	public static void main(String[] args) {
+		new Index();
 	}
 }

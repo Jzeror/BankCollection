@@ -2,8 +2,8 @@ package controller;
 
 import javax.swing.JOptionPane;
 import domain.*;
-import service.AccountService;
-import serviceImpl.AccountServiceImpl;
+import service.*;
+import serviceImpl.*;
 
 public class AccountController {
 
@@ -28,7 +28,7 @@ public class AccountController {
 
 	public void list() {
 		AccountService service = new AccountServiceImpl();
-		JOptionPane.showMessageDialog(null, service.list());
+//JOptionPane.showMessageDialog(null, ( service).listAccount());
 	}
 
 	public void findById() {
@@ -41,7 +41,7 @@ public class AccountController {
 
 	public void findByName() {
 		AccountService service = new AccountServiceImpl();
-		JOptionPane.showMessageDialog(null, service.findByName(JOptionPane.showInputDialog("이름?")));
+	//	JOptionPane.showMessageDialog(null, service.findByName(JOptionPane.showInputDialog("이름?")));
 	}
 
 	public void changePass() {
@@ -61,11 +61,4 @@ public class AccountController {
 		service.deleteAccount(account);
 	}
 
-	public static void main(String[] args) {
-
-		while (true) {
-
-			break;
-		}
-	}
 }

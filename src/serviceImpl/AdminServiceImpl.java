@@ -1,22 +1,97 @@
 package serviceImpl;
+
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import domain.*;
+import repository.MemberDAO;
+import repositoryImpl.MemberDAOImpl;
 import service.*;
 
 public class AdminServiceImpl implements AdminService {
-	private Map<String, AccountBean> accountTable ;
-	private Map<String, MemberBean> memberTable ;
-	public AdminServiceImpl() {
-		accountTable = new HashMap<>();
-		memberTable = new HashMap<>();	
+	private static AdminService instance = new AdminServiceImpl();
+
+	public static AdminService getInstance() {
+		return instance;
 	}
-	public Map<String, AccountBean> accountList() {
-		return accountTable;
+	private AdminServiceImpl() {
+		start = 1;
+		end = 999;
+	}
+	int start;
+	int end;
+
+	
+	@Override
+	public void createStaff(StaffBean staff) {
+		staff.setAccessNum("123-123-123");
+		MemberDAOImpl.getInstance().insertMember(staff);
 	}
 
-	public Map<String, MemberBean> memberList() {
-		return memberTable;
+	@Override
+	public List<MemberBean> listMember() {
+		return MemberDAOImpl.getInstance().selectListMember() ;
 	}
-	
-	
+
+	@Override
+	public List<MemberBean> findMemberByName(String name) {
+	/*	List<MemberBean> temp = new ArrayList<>();
+		for (MemberBean e : MemberDAOImpl.getInstance()) {
+			if (name.equals(e.getName())) {
+				temp.add(e);
+			}
+		}*/
+		return null;
+	}
+
+	@Override
+	public MemberBean findMemberById(MemberBean member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AccountBean> listAccount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AccountBean> findAccountByName(String param) {
+		/*List<AccountBean> list = new ArrayList<>();
+		for (AccountBean e : listAccount) {
+			if (param.equals(e.getName())) {
+				list.add(e);
+			}
+		}*/
+
+		return null;
+	}
+
+	@Override
+	public String createAccountNum() {
+		String num = "";
+		for (int i = 0; i < 3; i++) {
+			if (i != 2) {
+				num += String.format("%03d", createRandom(start, end)) + "-";
+			} else {
+				num += String.format("%03d", createRandom(start, end)) + "";
+			}
+		}
+		return num;
+	}
+
+	@Override
+	public int createRandom(int Start, int end) {
+		int a = (int) (Math.random() * end) + start;
+		return a;
+	}
+
+	@Override
+	public String createDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
