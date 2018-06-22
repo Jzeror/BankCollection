@@ -9,5 +9,4 @@ public void createMinusAccount(MinusAccountBean minusAccount);
 public AccountBean findById(AccountBean account);
 public void updatePass(AccountBean account);
 public void deleteAccount(AccountBean account);
-
 }

@@ -12,34 +12,33 @@ import domain.*;
 import service.*;
 import serviceImpl.*;
 
-public class Register extends JFrame{
+public class Register extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	JLabel topLab, idLab,passLab, nameLab, phoneLab, 
-		addrLab, ssnLab, emailLab;
-	JTextField idTxt, passTxt, nameTxt, phoneTxt, addrTxt, 
-		ssnTxt, emailTxt;
+	JLabel topLab, idLab, passLab, nameLab, phoneLab, addrLab, ssnLab, emailLab;
+	JTextField idTxt, passTxt, nameTxt, phoneTxt, addrTxt, ssnTxt, emailTxt;
 	JButton addBtn;
-	JPanel bottomPan, centerPan, idPan, passPan, 
-		namePan, phonePan, addrPan, ssnPan, emailPan;
+	JPanel bottomPan, centerPan, idPan, passPan, namePan, phonePan, addrPan, ssnPan, emailPan;
 	JComboBox<?> combo;
-	String[] menu = {"사용자 등록","직원 추가"};
+	String[] menu = { "사용자 등록", "직원 추가" };
+
 	public Register() {
-		makeGui(); //화면구성
+		makeGui(); // 화면구성
 		this.setSize(400, 300);
 		this.setVisible(true);
 	}
+
 	// uid,pass,name,ssn,phone,email,addr;
 	public void makeGui() {
 		topLab = new JLabel("회원가입", JLabel.CENTER);
-		
+
 		combo = new JComboBox<>(menu);
 		idLab = new JLabel("I D : ", JLabel.CENTER);
 		idTxt = new JTextField(15);
 		idPan = new JPanel();
 		idPan.add(idLab);
 		idPan.add(idTxt);
-		
+
 		passLab = new JLabel("비밀번호 : ");
 		passTxt = new JTextField(15);
 		passPan = new JPanel();
@@ -51,7 +50,7 @@ public class Register extends JFrame{
 		namePan = new JPanel();
 		namePan.add(nameLab);
 		namePan.add(nameTxt);
-		
+
 		ssnLab = new JLabel("주민번호 : ");
 		ssnTxt = new JTextField(15);
 		ssnPan = new JPanel();
@@ -63,7 +62,7 @@ public class Register extends JFrame{
 		phonePan = new JPanel();
 		phonePan.add(phoneLab);
 		phonePan.add(phoneTxt);
-		
+
 		emailLab = new JLabel("이메일 : ");
 		emailTxt = new JTextField(15);
 		emailPan = new JPanel();
@@ -76,8 +75,6 @@ public class Register extends JFrame{
 		addrPan.add(addrLab);
 		addrPan.add(addrTxt);
 
-	
-
 		centerPan = new JPanel();
 		centerPan.setLayout(new GridLayout(8, 1));
 		centerPan.add(combo);
@@ -88,11 +85,10 @@ public class Register extends JFrame{
 		centerPan.add(phonePan);
 		centerPan.add(emailPan);
 		centerPan.add(addrPan);
-		
 
 		addBtn = new JButton("추가");
 		addBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UserBean member = new UserBean();
@@ -103,9 +99,9 @@ public class Register extends JFrame{
 				member.setAddr(addrTxt.getText());
 				member.setPhone(phoneTxt.getText());
 				member.setEmail(emailTxt.getText());
-				if(((String)combo.getSelectedItem()).equals(menu[0])) {
+				if (((String) combo.getSelectedItem()).equals(menu[0])) {
 					MemberController.getInstance().join(member);
-				}else {
+				} else {
 					StaffBean staff = new StaffBean();
 					staff.setUid(idTxt.getText());
 					staff.setPass(passTxt.getText());
@@ -115,18 +111,16 @@ public class Register extends JFrame{
 					staff.setPhone(phoneTxt.getText());
 					staff.setEmail(emailTxt.getText());
 					AdminController.getInstance().add(staff);
-				} 
+				}
 			}
 		});
-		
 
 		bottomPan = new JPanel();
 		bottomPan.add(addBtn);
-		
+
 		add(topLab, "North");
 		add(centerPan, "Center");
 		add(bottomPan, "South");
 	}
-
 
 }

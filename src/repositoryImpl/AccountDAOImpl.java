@@ -5,6 +5,12 @@ import domain.AccountBean;
 import repository.AccountDAO;
 
 public class AccountDAOImpl implements AccountDAO{
+private static AccountDAO instance = new AccountDAOImpl();
+	public static AccountDAO getInstance() {
+	return instance;
+}
+private AccountDAOImpl() {
+	}
 
 	@Override
 	public void insertAccount(AccountBean account) {

@@ -10,8 +10,9 @@ import javax.swing.JPanel;
 public class CreateTextField {
 	JTextField idTxt;
 	JPanel idPan;
+
 	public void createButton() {
-		idTxt = new JTextField(); //텅 비어있어야함. 입력을 받아야하니까
+		idTxt = new JTextField(); // 텅 비어있어야함. 입력을 받아야하니까
 		idPan = new JPanel();
 		idPan.add(idTxt);
 	}

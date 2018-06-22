@@ -11,6 +11,5 @@ public interface MemberDAO {
 	public int countMembers();
 	public void updateMember(MemberBean member);
 	public void deleteMember(MemberBean member);
-		
 	}
 

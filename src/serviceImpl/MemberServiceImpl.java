@@ -23,13 +23,13 @@ public class MemberServiceImpl implements MemberService {
 		user.setCreditRating("7등급");
 		MemberDAOImpl.getInstance().insertMember(user);
 	}
-	
+
 	@Override
 	public String login(MemberBean member) {
 		// System.out.println("찾는 아이디에 해당하는 이름:" + map.get(member.getUid()).getName());
 		return "";
 	}
-	
+
 	@Override
 	public void updatePass(MemberBean member) {
 		/*

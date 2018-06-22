@@ -17,23 +17,25 @@ import domain.MinusAccountBean;
 import service.AccountService;
 
 public class AccountServiceImpl implements AccountService {
-	Map<String, AccountBean> map;
-	int start;
-	int end;
-	List<AccountBean> list;
-	public AccountServiceImpl() {
-		map = new HashMap<>();
-		start = 1;
-		end = 999;
-	}
+private static AccountService instance= new AccountServiceImpl();
+
+	public static AccountService getInstance() {
+	return instance;}	
+	private  AccountServiceImpl() {}
+
 
 
 	@Override
 	public void createAccount(AccountBean account) {
+		System.out.println(account);
+		account.setAccountNum(AdminServiceImpl.getInstance().createAccountNum());
 		account.setAccountType(AccountBean.ACCOUNT_TYPE);
+		account.setCreateDate(AdminServiceImpl.getInstance().createDate());
+		System.out.println(account);
+		
 	//	account.setCreateDate(createDate());
 	//	account.setAccountNum(createAccountNum());
-		map.put(account.getUid(), account);
+/*		map.put(account.getUid(), account);*/
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class AccountServiceImpl implements AccountService {
 		minusAccount.setAccountType(MinusAccountBean.ACCOUNT_TYPE);
 		//minusAccount.setCreateDate(createDate());
 		//minusAccount.setAccountNum(createAccountNum());
-		list.add(minusAccount);
+	/*	list.add(minusAccount);*/
 	}
 
 
@@ -49,13 +51,13 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public AccountBean findById(AccountBean account) {
-		System.out.println(map.get(account.getUid()).getName());
-		return map.get(account.getUid());
+		/*System.out.println(list(account.getUid()).getName());*/
+		return null;
 	}
 
 	@Override
 	public void updatePass(AccountBean account) {
-		String pass = account.getPass().split("/")[0];
+	/*	String pass = account.getPass().split("/")[0];
 		String newPass = account.getPass().split("/")[1];
 		AccountBean temp = map.get(account.getUid());
 		if (temp == null) {
@@ -64,7 +66,7 @@ public class AccountServiceImpl implements AccountService {
 			if (temp.getPass().equals(pass)) {
 				map.get(account.getUid()).setPass(newPass); // 이건 put보다 안좋나? get을 써서 찾긴 찾아야 하니까?
 			}
-		}
+		}*/
 	}
 
 	@Override
@@ -72,7 +74,7 @@ public class AccountServiceImpl implements AccountService {
 		if (account.getPass().split("/")[0].equals(account.getPass().split("/")[1])) {
 			// map.remove(map.get(account.getUid()).getUid()); ★key이기 때문에
 			// map.get(account.getUid()).getUid() 와 account.getUid()는 차이가 없음.
-			map.remove(account.getUid());
+		/*	map.remove(account.getUid());*/
 		} else {
 			System.out.println("입력오류");
 		}

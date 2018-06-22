@@ -9,7 +9,6 @@ public interface AdminService {//관리자 모드
 	public List<MemberBean> listMember();
 	public List<MemberBean> findMemberByName(String name);
 	public MemberBean findMemberById(MemberBean member);
-	
 	public List<AccountBean> listAccount();
 	public List<AccountBean> findAccountByName(String param);
 	public String createAccountNum();

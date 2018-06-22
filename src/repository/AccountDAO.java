@@ -13,5 +13,4 @@ public AccountBean selectMemberById(String id);
 public int countAccount();
 public void updateAccount(AccountBean account);
 public void deleteAccount(AccountBean account);
-
 }
