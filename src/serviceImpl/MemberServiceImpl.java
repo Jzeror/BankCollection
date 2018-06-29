@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 	public void updatePass(MemberBean member) {
 		/*
 		 * String id = member.getUid(); String oldPass = member.getPass().split("/")[0];
-		 * String newPass = member.getPass().split("/")[1]; MemberBean mem =
+		 * String newPass = member.getPass().split("/")[1]; MemberBean mem = 
 		 * map.get(member.getUid()); if (mem == null) {
 		 * System.out.println("수정하려는 ID 가 없음!!"); } else { if
 		 * (oldPass.equals(mem.getPass())) { mem.setPass(newPass); map.put(id, mem); } }
